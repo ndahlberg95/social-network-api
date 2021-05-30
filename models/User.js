@@ -12,38 +12,28 @@ const UserSchema = new Schema(
         type: String,
         required: true,
         unique: true,
-        //must match a valid email address (look into Mongoose's matching validation)
+        match: [/.+@.+\..+/]
     },
-    thoughts: {
-      //array of _id values referencing the Thought model
-    },
-    friends: {
-      //array of _id values referencing the User model (self-reference)
-    },
+    thoughts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Thought'
+      }
+    ],
+    friends: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+      }
+    ],
   }
 );
 
-//Schema Settings:
 //create a virtual called friendCount that retrieves the length of the user's friends array field on query.
 UserSchema.virtual('friendCount').get(function() {
-  // return this.friends.length(this.friends.length + 1);
-  return "asdf"
+  return this.friends.length;
 });
 
-// create the User model using the UserSchema
 const User = model('User', UserSchema);
 
-// export the User model
 module.exports = User;
-
-
-//VIRTUAL EXAMPLE:
-// // Create a virtual property `domain` that's computed from `email`.
-// userSchema.virtual('domain').get(function() {
-//   return this.email.slice(this.email.indexOf('@') + 1);
-// });
-// const User = mongoose.model('User', userSchema);
-
-// let doc = await User.create({ email: 'test@gmail.com' });
-// // `domain` is now a property on User documents.
-// doc.domain; // 'gmail.com'

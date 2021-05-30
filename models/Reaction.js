@@ -1,4 +1,3 @@
-const { ObjectID } = require('bson');
 const { Schema, model, Types } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
@@ -25,10 +24,6 @@ const ReactionSchema = new Schema(
   }
 );
 
-//This will not be a model, but rather will be used as the reaction field's subdocument schema in the Thought model.
-
-// create the Reaction model using the ReactionSchema
 const Reaction = model('Reaction', ReactionSchema);
 
-// export the Reaction model
 module.exports = Reaction;
