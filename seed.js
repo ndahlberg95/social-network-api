@@ -1,4 +1,5 @@
 const User = require('./models/User');
+const Thought = require('./models/Thought');
 const mongoose = require('mongoose');
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/social-network-api', {
@@ -7,11 +8,10 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/social-network-
   useUnifiedTopology: true
 });
 
-// Use this to log mongo queries being executed!
 mongoose.set('debug', true);
 
 User.find().then(
     resp => console.log(resp)
 )
 
-User.create({ username: 'myusername', email: 'myemail@email.com'})
+User.create({ username: 'nora', email: 'nora@email.com'})
