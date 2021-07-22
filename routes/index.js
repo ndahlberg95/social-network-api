@@ -4,5 +4,8 @@ const thoughtsRoutes = require('./api/thoughts-routes');
 
 router.use('/users', usersRoutes);
 router.use('/thoughts', thoughtsRoutes);
+router.use('*', (req, res)=> {
+    res.send("It's working!");
+});
 
 module.exports = router;
