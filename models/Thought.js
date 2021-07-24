@@ -3,6 +3,11 @@ const dateFormat = require('../utils/dateFormat');
 const ReactionSchema = require('./Reaction');
 
 const ThoughtSchema = new Schema(
+  // To look like this in JSON: 
+  // {
+  //   "thoughtText": "This is my thought.",
+  //   "username": "Nora",
+  // }
   {
     thoughtText: {
       type: String,

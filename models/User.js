@@ -1,6 +1,11 @@
 const { Schema, model, Types } = require('mongoose');
 
 const UserSchema = new Schema(
+// To look like this when entered in JSON:
+// {
+//   "username": "nora",
+//   "email": "nora@email.com"
+// }
   {
     username: {
       type: String,
